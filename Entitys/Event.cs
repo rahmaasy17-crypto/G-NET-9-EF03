@@ -28,7 +28,7 @@ namespace ConsoleApp1.Entitys
         public Event ParentEvent { get; set; }
         public ICollection<Event> Sessions { get; set; } = new List<Event>(); //self relationship
 
-        public ICollection<Registration> Registrations { get; set; } = new List<Registration>();
+        public ICollection<Registration> Registrations { get; set; } = new HashSet<Registration>();
 
 
     }
