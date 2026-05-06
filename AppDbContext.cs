@@ -30,14 +30,14 @@ namespace ConsoleApp1
                 .WithOne(p => p.Organizer)
                 .HasForeignKey<OrganizerProfile>(p => p.OrganizerId);
 
-            // Event Self Relationship
-            modelBuilder.Entity<Event>()
-                .HasOne(e => e.ParentEvent)
-                .WithMany(e => e.Sessions)
-                .HasForeignKey(e => e.ParentEventId)
-                .OnDelete(DeleteBehavior.Restrict);
+            // Event Self Relationship  [BY using flyent api instead of by convention]
+        //    modelBuilder.Entity<Event>()
+              //  .HasOne(e => e.ParentEvent)
+             //   .WithMany(e => e.Sessions)
+             //   .HasForeignKey(e => e.ParentEventId)
+            //    .OnDelete(DeleteBehavior.Restrict);
 
-            // Attendee&Event 1-M
+            // Attendee&Event M-M
             modelBuilder.Entity<Registration>()
                 .HasKey(r => new { r.AttendeeId, r.EventId });//Composite Key
 
