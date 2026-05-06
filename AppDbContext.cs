@@ -24,13 +24,14 @@ namespace ConsoleApp1
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+        //  [BY using flyent api instead of by convention] 
             // Organizer&OrganizerProfile 1-1
-            modelBuilder.Entity<Organizer>()
-                .HasOne(o => o.Profile)
-                .WithOne(p => p.Organizer)
-                .HasForeignKey<OrganizerProfile>(p => p.OrganizerId);
+        //    modelBuilder.Entity<Organizer>()
+               // .HasOne(o => o.Profile)
+               // .WithOne(p => p.Organizer)
+               // .HasForeignKey<OrganizerProfile>(p => p.OrganizerId);
 
-            // Event Self Relationship  [BY using flyent api instead of by convention]
+            // Event Self Relationship 
         //    modelBuilder.Entity<Event>()
               //  .HasOne(e => e.ParentEvent)
              //   .WithMany(e => e.Sessions)
@@ -41,21 +42,21 @@ namespace ConsoleApp1
             modelBuilder.Entity<Registration>()
                 .HasKey(r => new { r.AttendeeId, r.EventId });//Composite Key
 
-            modelBuilder.Entity<Registration>()
-                .HasOne(r => r.Attendee)
-                .WithMany(a => a.Registrations)
-                .HasForeignKey(r => r.AttendeeId);
+       //     modelBuilder.Entity<Registration>()
+           //     .HasOne(r => r.Attendee)
+              //  .WithMany(a => a.Registrations)
+            //    .HasForeignKey(r => r.AttendeeId);
 
-            modelBuilder.Entity<Registration>()
-                .HasOne(r => r.Event)
+         //   modelBuilder.Entity<Registration>()
+           //     .HasOne(r => r.Event)
                 .WithMany(e => e.Registrations)
-                .HasForeignKey(r => r.EventId);
+             //   .HasForeignKey(r => r.EventId);
 
             // Attendee&Badge 1-1
-            modelBuilder.Entity<Attendee>()
-                .HasOne(a => a.Badge)
-                .WithOne(b => b.Attendee)
-                .HasForeignKey<Badge>(b => b.AttendeeId);
+         //   modelBuilder.Entity<Attendee>()
+              //  .HasOne(a => a.Badge)
+              //  .WithOne(b => b.Attendee)
+              //  .HasForeignKey<Badge>(b => b.AttendeeId);
 
             // Owned Type
             modelBuilder.Entity<Attendee>()
