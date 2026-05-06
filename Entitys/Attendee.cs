@@ -18,7 +18,7 @@ namespace ConsoleApp1.Entitys
         public Address Address { get; set; }//1-1 relationship with Address
 
         public Badge Badge { get; set; }//1-1 relationship with Badge   
-        public ICollection<Registration> Registrations { get; set; } = new List<Registration>();
+        public ICollection<Registration> Registrations { get; set; } = new HashSet<Registration>();
 
 
     }
